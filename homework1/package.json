@@ -1,0 +1,27 @@
+{
+  "name": "homework1",
+  "version": "0.0.1",
+  "description": "Homework 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "homework",
+    "node",
+    "javascript"
+  ],
+  "author": "Danico Pidlaoan",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.5.3",
+    "should": "^13.0.1"
+  },
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  }
+}
