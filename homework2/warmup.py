@@ -2,6 +2,7 @@ import random
 import math
 import json
 import requests
+from Crypto.Cipher import AES
 
 def change(amount):
     if amount < 0:
@@ -27,13 +28,14 @@ def scramble(s):
     return ''.join(characters)
 
 def say(first_string=''):
+    """ Creds to Jackson Watkins for help with syntax """
     if first_string == '':
         return first_string
-    def say2(next_string=''):
+    def say_again(next_string=''):
         if next_string == '':
             return first_string
         return say(first_string + " " + next_string)
-    return say2
+    return say_again
 
 def triples(limit):
     result = []
@@ -81,10 +83,22 @@ class Cylinder:
     def stretch(self, factor):
         self.height *= factor
 
-def make_crypto_functions():
-    return
+def make_crypto_functions(key, IV):
+    """ Creds to Emily Shoji for helping me with syntax and implementation """
+    cypher_key = key
+    def encrypt(message):
+        encryption_suite = AES.new(cypher_key, AES.MODE_CBC, IV)
+        return encryption_suite.encrypt(message)
+
+    def decrypt(message):
+        decryption_suite = AES.new(cypher_key, AES.MODE_CBC, IV)
+        return decryption_suite.decrypt(message)
+
+    return (encrypt, decrypt)
+
 
 def random_name(gender, region):
+    """ Creds to Emily Shoji for helping me with syntax and implementation"""
     url = 'http://uinames.com/api/'
     kwargs = {
         'amount': 1,
