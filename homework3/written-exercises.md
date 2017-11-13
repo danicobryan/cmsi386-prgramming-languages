@@ -55,7 +55,8 @@ int main() {
   std::cout << x << '\n';
 }
 ```
-- the program outputs 2, then 5 on the next line, and then 2 again on the third line. If C++ used dynamic scoping the output would be 
+- the program outputs 2, then 5 on the next line, and then 2 again on the third line. 
+- If C++ used dynamic scoping the output would be 5 on the first, line, 5 on the second line, and 5 on the third line.
 
 6. Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for
 + a raw array
