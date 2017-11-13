@@ -64,6 +64,13 @@ int main() {
 - If C++ used dynamic scoping the output would be 5 on the first, line, 5 on the second line, and 5 on the third line.
 
 # Problem 6.
-##### 6. Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for
-+ a raw array
-+ a std::array
+##### 6. Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for (a) a raw array (b) a std::array
+
+(a) 
+```cpp
+
+```
+(b)
+```cpp
+template<typename T, size_t SIZE> void shuffle(std::array<T,s> &&arr)
+```
