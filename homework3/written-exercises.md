@@ -27,6 +27,7 @@ double (\*d())[n];
 ```cpp
 double (*f(double (*)(double, double[]), double)) (double, ...);
 ```
+- f is a pointer to a function that takes in 2 arguments: 1) another function that takes a double as the first argument and an array of doubles as the second argument. 2) a double. The function call takes a double as the first argument, and an unlimited amount of arguments after that.
 
 4. Suppose we have this code. Does the representation of a Derived object contain one b field or two? If two, are both accessible, or only one? Under what circumstances? Tell the story of how things are.
 ```cpp
