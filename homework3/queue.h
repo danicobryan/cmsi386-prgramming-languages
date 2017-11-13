@@ -9,8 +9,7 @@ class Queue {
 
   struct Node {
     T data;
-    Node* prev;
-    Node * next;
+    Node* next;
   };
 
   int size = 0;
@@ -24,7 +23,7 @@ class Queue {
 public:
 
   ~Queue() {
-    while (tail != nullptr) {
+    while (head != nullptr) {
       dequeue();
     }
   }
@@ -34,8 +33,9 @@ public:
   Queue(const Queue& q) = delete;
   Queue& operator=(const Queue& q) = delete;
 
-  Queue(Queue&& q): size(q.size), tail(q.tail) {
+  Queue(Queue&& q): size(q.size), head(q.head), tail(q.tail) {
     q.tail = nullptr;
+    q.head = nullptr;
     q.size = 0;
   }
 
@@ -63,29 +63,39 @@ public:
 
   void enqueue(T x) {
     if(size == 0){
-        head = new Node {x, head, nullptr};
+        head = new Node {x, nullptr};
+        tail = head;
     }
-    tail = new Node {x, tail, nullptr};
+    Node *temp = new Node {x, nullptr};
+    tail->next = temp;
+    tail = temp;
     size++;
   }
 
   T dequeue() {
     if(size == 0){
         throw underflow_error("Queue Underflow");
+    } else if (size == 1) {
+      T valueToReturn = head->data;
+      delete head;
+      head = nullptr;
+      size--;
+      return valueToReturn;
+    }else{
+      Node* nodeToDelete = tail;
+      T valueToReturn = head->data;
+      head = head->next;
+      size--;
+      delete nodeToDelete;
+      return valueToReturn;
     }
-    Node* nodeToDelete = head;
-    T valueToReturn = head->data;
-    head = head->next;
-    size--;
-    delete nodeToDelete;
-    return valueToReturn;
   }
 };
 
-int main() {
-  Queue<int> s;
-  assert(s.get_size() == 0);
-  s.enqueue(100);
-  assert(s.get_head() == 100);
-  cout << "All tests passed\n";
-}
+  Queue<int> oneTwoThree() {
+    Queue<int> z;
+    z.enqueue(3);
+    z.enqueue(2);
+    z.enqueue(1);
+    return z;
+  }
