@@ -1,27 +1,27 @@
 # Problem 1.
 ##### 1. On your machine, find the address of A[0][0] and A[3][7]. Explain why these values are what you found them to be. ...
 
-- The address of A[0]\[0] is 0x7fff5c3717d0 and the address of A[3][7] is 0x7fff5c3718f8.
+- The address of A[0][0] is 0x7fff5c3717d0 and the address of A[3][7] is 0x7fff5c3718f8.
 
 # Problem 2.
 ##### 2. Explain the meaning of the following C++ declarations:
 ```cpp
-double \*a[n];
+double *a[n];
 ```
 - this is a pointer to the array a of size n.
 
  ```cpp
- double (\*b)[n];
+ double (*b)[n];
  ```
 - b is a pointer to the int array of doubles of size n.
 
 ```cpp
-double (\*c[n])();
+double (*c[n])();
 ```
 -
 
 ```cpp
-double (\*d())[n];
+double (*d())[n];
 ```
 -
 
@@ -61,7 +61,7 @@ int main() {
 }
 ```
 - the program outputs 2, then 5 on the next line, and then 2 again on the third line. 
-- If C++ used dynamic scoping the output would be 5 on the first, line, 5 on the second line, and 5 on the third line.
+- If C++ used dynamic scoping the output would be 5 on the first line, 5 on the second line, and 5 on the third line.
 
 # Problem 6.
 ##### 6. Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for (a) a raw array (b) a std::array
