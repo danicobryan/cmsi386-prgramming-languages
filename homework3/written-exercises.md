@@ -1,3 +1,4 @@
+# 1
 1. On your machine, find the address of A[0][0] and A[3][7]. Explain why these values are what you found them to be. ...
 
 - The address of A[0]\[0] is 0x7fff5c3717d0 and the address of A[3][7] is 0x7fff5c3718f8.
