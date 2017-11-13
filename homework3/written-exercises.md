@@ -1,10 +1,10 @@
 # Problem 1.
-1. On your machine, find the address of A[0][0] and A[3][7]. Explain why these values are what you found them to be. ...
+##### 1. On your machine, find the address of A[0][0] and A[3][7]. Explain why these values are what you found them to be. ...
 
 - The address of A[0]\[0] is 0x7fff5c3717d0 and the address of A[3][7] is 0x7fff5c3718f8.
 
 # Problem 2.
-2. Explain the meaning of the following C++ declarations:
+##### 2. Explain the meaning of the following C++ declarations:
 ```cpp
 double \*a[n];
 ```
@@ -26,14 +26,14 @@ double (\*d())[n];
 -
 
 # Problem 3.
-3. Describe rigorously, in English, the type of f.
+##### 3. Describe rigorously, in English, the type of f.
 ```cpp
 double (*f(double (*)(double, double[]), double)) (double, ...);
 ```
 - f is a pointer to a function that takes in 2 arguments: 1) another function that takes a double as the first argument and an array of doubles as the second argument. 2) a double. The function call takes a double as the first argument, and an unlimited amount of arguments after that.
 
 # Problem 4.
-4. Suppose we have this code. Does the representation of a Derived object contain one b field or two? If two, are both accessible, or only one? Under what circumstances? Tell the story of how things are.
+##### 4. Suppose we have this code. Does the representation of a Derived object contain one b field or two? If two, are both accessible, or only one? Under what circumstances? Tell the story of how things are.
 ```cpp
 class Base {
 public:
@@ -49,7 +49,7 @@ public:
 ```
 
 # Problem 5.
-5. What does the following C++ program output?
+##### 5. What does the following C++ program output?
 ```cpp
 #include <iostream>
 int x = 2;
