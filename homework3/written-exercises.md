@@ -68,9 +68,9 @@ int main() {
 
 (a) 
 ```cpp
-void shuffle(auto &arr)
+void shuffle(auto &arr);
 ```
 (b)
 ```cpp
-template<typename T, size_t SIZE> void shuffle(std::array<T,s> &&arr)
+template<typename T, size_t SIZE> void shuffle(std::array<T,s> &&arr);
 ```
