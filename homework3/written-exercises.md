@@ -68,7 +68,7 @@ int main() {
 
 (a) 
 ```cpp
-
+void shuffle(auto &arr)
 ```
 (b)
 ```cpp
