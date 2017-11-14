@@ -32,6 +32,15 @@ public:
   Queue(const Queue& s) = delete;
   Queue& operator=(const Queue& s) = delete;
 
+  friend std::ostream& operator<<(std::ostream & out, const Queue& s){
+    Node* current = s.head;
+    while(current){
+      out << current->data << " ";
+      current = current->next;
+    }
+    return out;
+  }
+
   Queue(Queue&& s): size(s.size), head(s.head), tail(s.tail) {
     s.head = nullptr;
     s.tail = nullptr;
