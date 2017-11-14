@@ -1,6 +1,5 @@
 #include <cassert>
 #include <iostream>
-#include <stdexcept>
 
 using namespace std;
 
@@ -30,21 +29,21 @@ public:
 
   Queue() = default;
 
-  Queue(const Queue& q) = delete;
-  Queue& operator=(const Queue& q) = delete;
+  Queue(const Queue& s) = delete;
+  Queue& operator=(const Queue& s) = delete;
 
-  Queue(Queue&& q): size(q.size), head(q.head), tail(q.tail) {
-    q.tail = nullptr;
-    q.head = nullptr;
-    q.size = 0;
+  Queue(Queue&& s): size(s.size), head(s.head), tail(s.tail) {
+    s.head = nullptr;
+    s.tail = nullptr;
+    s.size = 0;
   }
 
-  Queue& operator=(Queue&& q) {
-    if (&q != this) {
-      size = q.size;
-      tail = q.tail;
-      q.tail = nullptr;
-      q.size = 0;
+  Queue& operator=(Queue&& s) {
+    if (&s != this) {
+      size = s.size;
+      head = s.head;
+      s.head = nullptr;
+      s.size = 0;
     }
     return *this;
   }
@@ -57,18 +56,19 @@ public:
     return head->data;
   }
 
-  T get_tail() {
+  T get_tail(){
     return tail->data;
   }
 
   void enqueue(T x) {
-    if(size == 0){
-        head = new Node {x, nullptr};
+    if(size ==0){
+        head = new Node{x, nullptr};
         tail = head;
+    }else{
+      Node *temp = new Node{x, nullptr};
+      tail->next = temp;
+      tail = temp;
     }
-    Node *temp = new Node {x, nullptr};
-    tail->next = temp;
-    tail = temp;
     size++;
   }
 
@@ -82,7 +82,7 @@ public:
       size--;
       return valueToReturn;
     }else{
-      Node* nodeToDelete = tail;
+      Node* nodeToDelete = head;
       T valueToReturn = head->data;
       head = head->next;
       size--;
@@ -92,10 +92,10 @@ public:
   }
 };
 
-  Queue<int> oneTwoThree() {
-    Queue<int> z;
-    z.enqueue(3);
-    z.enqueue(2);
-    z.enqueue(1);
-    return z;
-  }
+Queue<int> oneTwoThree() {
+  Queue<int> z;
+  z.enqueue(3);
+  z.enqueue(2);
+  z.enqueue(1);
+  return z;
+}
