@@ -100,11 +100,3 @@ public:
     }
   }
 };
-
-Queue<int> oneTwoThree() {
-  Queue<int> z;
-  z.enqueue(3);
-  z.enqueue(2);
-  z.enqueue(1);
-  return z;
-}
