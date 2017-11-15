@@ -18,17 +18,22 @@ int main() {
     map<string, int> word_count;
     string text;
 
-    while (cin >> text) {
-        std::transform(text.begin(), text.end(), text.begin(), ::tolower);
+    cout << "Enter a string" << '\n';
+    getline (cin, text);
 
-        for (int i = 0, len = text.size(); i < len; i++){
-            if (ispunct(text[i])){
-                text.erase(i--, 1);
-                len = text.size();
-            }
+    std::transform(text.begin(), text.end(), text.begin(), ::tolower);
+
+    string word = "";
+    for (int i = 0, len = text.size(); i <= len; i++){
+
+        if(isalpha(text[i]) && !isspace(text[i])){
+          word += text[i];
+        }
+        if(!isalpha(text[i]) && word != ""){
+          word_count[word]++;
+          word = "";
         }
 
-        word_count[text]++;
     }
 
     vector<pair<string, int> > mapcopy(word_count.begin(), word_count.end());
