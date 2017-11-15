@@ -18,7 +18,6 @@ int main() {
     map<string, int> word_count;
     string text;
 
-    //--- Read words/tokens from input stream
     while (cin >> text) {
         std::transform(text.begin(), text.end(), text.begin(), ::tolower);
 
