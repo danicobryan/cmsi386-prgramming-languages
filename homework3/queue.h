@@ -34,13 +34,11 @@ public:
 
   friend std::ostream& operator<<(std::ostream & out, const Queue& s){
     Node* current = s.head;
-    out << "[";
     while(current){
-      out << current->data;
+      out << current->data << " ";
       current = current->next;
     }
-    out << "]";
-    return out;
+      return out;
   }
 
   Queue(Queue&& s): size(s.size), head(s.head), tail(s.tail) {
