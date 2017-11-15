@@ -43,5 +43,7 @@ int main() {
     {
         cout << mapcopy[i].first << " " << mapcopy[i].second << endl;
     }
+    
+    return 0;
 
 }
