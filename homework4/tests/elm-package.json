@@ -1,11 +1,12 @@
 {
     "version": "1.0.0",
     "summary": "Test Suites",
-    "repository": "https://github.com/user/project.git",
+    "repository": "https://github.com/danicobryan/cmsi386-programming-languages.git",
     "license": "BSD3",
     "source-directories": [
         "..",
-        "."
+        ".",
+        "../src"
     ],
     "exposed-modules": [],
     "dependencies": {
