@@ -3,6 +3,9 @@ import Html exposing (Html, text)
 import List exposing (map, foldr, filter)
 import Regex
 import Date
+import Basics
+import Date exposing (..)
+import Date.Extra as Date exposing (..)
 
 {-- A function that accepts a number of U.S. cents and returns a tuple containing, respectively,
     the smallest number of U.S. quarters, dimes, nickels, and pennies that equal the given amount. --}
@@ -31,7 +34,7 @@ powers base limit =
   if base < 0 then
     Err "negative base"
   else
-    Ok <| (List.map (\power -> base ^ power) (List.range 0 (floor (logBase (toFloat base) (toFloat limit)))))
+    Ok <| (List.map (\power -> base ^ power) (List.range 0 (Basics.floor (logBase (toFloat base) (toFloat limit)))))
 -- Creds to Jackson for explaning the concept of how to do this without recursion
 
 -- A function that returns the sum of the cubes of all of the odd integers in a list. Use map, filter, and foldr.
@@ -46,3 +49,18 @@ sumOfCubesOfOdds numbers =
 
 {-- A function that returns the number of days between two dates,
     where the dates are given as strings in the format "YYYY-MM-DD". --}
+
+daysBetween: String -> String -> Result String (Int)
+daysBetween firstString secondString =
+  case Date.fromString firstString of
+    Err msg -> Err "First input string is not a date."
+    Ok _ ->
+      case Date.fromString firstString of
+        Err msg -> Err "Second input string is not a date."
+        Ok _ ->
+          Ok <|
+            let
+              firstDate = Date.fromString firstString |> Result.withDefault (Date.fromTime 0)
+              secondDate = Date.fromString secondString |> Result.withDefault (Date.fromTime 0)
+            in
+              Date.diff Day (firstDate) (secondDate)

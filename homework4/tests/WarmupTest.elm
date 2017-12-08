@@ -3,7 +3,7 @@ module WarmupTest exposing (..)
 import Expect exposing (Expectation, FloatingPointTolerance(Absolute), within, equal)
 import Test exposing (..)
 import Warmup exposing (..)
--- import Cylinder exposing (..)
+import Cylinder exposing (..)
 
 suite : Test
 suite =
@@ -21,20 +21,20 @@ suite =
             , test "removes stuff" <| \_ -> stripQuotes "''\"\"a'''" |> equal "a"
             , test "does not remove backslashes" <| \_ -> stripQuotes "a\\b" |> equal "a\\b"
             ]
-        {--, describe "powers function"
+        , describe "powers function"
             [ test "works for negative limit" <| \_ -> powers 2 -5 |> equal (Ok [])
             , test "works for 2 up to 63" <| \_ -> powers 2 63 |> equal (Ok [1, 2, 4, 8, 16, 32])
             , test "works for 2 up to 64" <| \_ -> powers 2 64 |> equal (Ok [1, 2, 4, 8, 16, 32, 64])
             , test "works for 3 up to 81" <| \_ -> powers 3 81 |> equal (Ok [1, 3, 9, 27, 81])
             , test "rejects negative bases" <| \_ -> powers -2 63 |> equal (Err "negative base")
-            ] --}
+            ]
         , describe "sum of odd cubes function"
             [ test "works for empty" <| \_ -> sumOfCubesOfOdds [] |> equal 0
             , test "works for single even" <| \_ -> sumOfCubesOfOdds [8] |> equal 0
             , test "works for single odd" <| \_ -> sumOfCubesOfOdds [3] |> equal 27
             , test "works for a mixed list" <| \_ -> sumOfCubesOfOdds [-3, 2, -8, 5, -1] |> equal 97
             ]
-        {--, describe "daysBetween function"
+        , describe "daysBetween function"
             [ test "one day" <| \_ -> daysBetween "2017-01-01" "2016-12-31" |> equal (Ok -1)
             , test "in leap year" <| \_ -> daysBetween "2016-03-01" "2016-02-27" |> equal (Ok -3)
             , test "in leap year again" <| \_ -> daysBetween "2016-02-27" "2016-03-01" |> equal (Ok 3)
@@ -50,5 +50,5 @@ suite =
                 volume { radius = 2.0, height = 10.0 } |> within (Absolute 0.000001) (40*pi)
             , test "surfaceArea" <| \_ ->
                 surfaceArea { radius = 2.0, height = 10.0 } |> within (Absolute 0.000001) (48*pi)
-            ]--}
+            ]
         ]

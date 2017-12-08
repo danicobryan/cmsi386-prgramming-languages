@@ -14,10 +14,10 @@ surfaceArea c = (2 * (pi * (c.radius ^ 2))) + (2 * pi * c.radius * c.height)
 
 widen : Int -> Cylinder -> Cylinder
 widen factor c =
-    let newRadius = c.radius + c.radius * (toFloat factor)
-    in { height = c.height, radius = newRadius }
+    let newRadius = c.radius * (toFloat factor)
+    in { radius = newRadius, height = c.height }
 
 stretch : Int -> Cylinder -> Cylinder
 stretch factor c =
-    let newHeight = c.height + c.height * (toFloat factor)
-    in { height = newHeight, radius = c.radius }
+    let newHeight = c.height * (toFloat factor)
+    in { radius = c.radius, height = newHeight }
