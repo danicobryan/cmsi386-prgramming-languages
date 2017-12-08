@@ -6,6 +6,17 @@ import Date
 
 {-- A function that accepts a number of U.S. cents and returns a tuple containing, respectively,
     the smallest number of U.S. quarters, dimes, nickels, and pennies that equal the given amount. --}
+change: Int -> Result String (Int, Int, Int, Int)
+change amount =
+  if amount < 0 then Err "amount cannot be negative" else
+    Ok <|
+      let
+        quarters = amount
+        dimes = quarters % 25
+        nickels = dimes % 10
+        pennies = nickels % 5
+      in
+        (,,,)(quarters // 25)(dimes // 10)(nickels // 5)(pennies)
 
 {-- A function that accepts a string and returns a new string equivalent to the argument
     but with all apostrophes and double quotes removed. --}
