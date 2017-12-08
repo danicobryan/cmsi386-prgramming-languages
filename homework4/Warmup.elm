@@ -26,7 +26,13 @@ stripQuotes str =
       |> Regex.replace Regex.All (Regex.regex "[\'\"]")(\_ -> "")
 
 -- A function that returns a list of successive powers of a base starting at 1 and going up to some limit.
-
+powers : Int -> Int -> Result String (List Int)
+powers base limit =
+  if base < 0 then
+    Err "negative base"
+  else
+    Ok <| (List.map (\power -> base ^ power) (List.range 0 (floor (logBase (toFloat base) (toFloat limit)))))
+-- Creds to Jackson for explaning the concept of how to do this without recursion
 
 -- A function that returns the sum of the cubes of all of the odd integers in a list. Use map, filter, and foldr.
 
