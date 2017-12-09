@@ -1,28 +1,14 @@
 module DateCalculatorApp exposing (..)
 import Html exposing (Html, body, input, text, h1, p, button)
-import Html.Attributes exposing (style, value)
+import Html.Attributes exposing (style, value, type_)
 import Html.Events exposing (onClick, onInput)
 import Date exposing (..)
 import Date.Extra as Date exposing (..)
+import Warmup exposing (daysBetween)
+
 
 type alias Model = { date1: String, date2: String }
 type Msg = ChangeDate1 String | ChangeDate2 String
-
-daysBetween: String -> String -> Result String (Int)
-daysBetween firstString secondString =
-  case Date.fromString firstString of
-    Err msg -> Err "First input string is not a date."
-    Ok _ ->
-      case Date.fromString firstString of
-        Err msg -> Err "Second input string is not a date."
-        Ok _ ->
-          Ok <|
-            let
-              firstDate = Date.fromString firstString |> Result.withDefault (Date.fromTime 0)
-              secondDate = Date.fromString secondString |> Result.withDefault (Date.fromTime 0)
-            in
-              Date.diff Day (firstDate) (secondDate)
-
 
 daysBetweenMessage date1String date2String =
     let
@@ -50,8 +36,7 @@ view : Model -> Html Msg
 view model =
     body [style [("textAlign", "center"), ("font", "16px Arial"), ("background-color", "linen"), ("margin", "0")]]
         [ h1 [style [("background-color", "cyan")]] [text "Date Calculator"]
-        , p [] [text "From: ", input [value model.date1] []]
-        , p [] [text "To: ", input [value model.date2] []]
-        , button [] [text "calculate"]
+        , p [] [text "From: ", input [type_ "date", onInput ChangeDate1, value model.date1] []]
+        , p [] [text "To: ",  input [type_ "date", onInput ChangeDate2, value model.date2] []]
         , p [] [text <| daysBetweenMessage model.date1 model.date2]
         ]

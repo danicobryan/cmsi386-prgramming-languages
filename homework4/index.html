@@ -10527,28 +10527,14 @@ var _justinmimbs$elm_date_extra$Date_Extra$equalBy = F3(
 	});
 var _justinmimbs$elm_date_extra$Date_Extra$Second = {ctor: 'Second'};
 var _justinmimbs$elm_date_extra$Date_Extra$Millisecond = {ctor: 'Millisecond'};
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'ChangeDate1') {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{date1: _p0._0});
-		} else {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{date2: _p0._0});
-		}
-	});
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model = {date1: '2000-01-01', date2: '2000-02-01'};
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetween = F2(
+var _danicobryan$cmsi386_programming_languages$Warmup$daysBetween = F2(
 	function (firstString, secondString) {
-		var _p1 = _elm_lang$core$Date$fromString(firstString);
-		if (_p1.ctor === 'Err') {
+		var _p0 = _elm_lang$core$Date$fromString(firstString);
+		if (_p0.ctor === 'Err') {
 			return _elm_lang$core$Result$Err('First input string is not a date.');
 		} else {
-			var _p2 = _elm_lang$core$Date$fromString(firstString);
-			if (_p2.ctor === 'Err') {
+			var _p1 = _elm_lang$core$Date$fromString(firstString);
+			if (_p1.ctor === 'Err') {
 				return _elm_lang$core$Result$Err('Second input string is not a date.');
 			} else {
 				return _elm_lang$core$Result$Ok(
@@ -10566,25 +10552,114 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetween = F
 			}
 		}
 	});
+var _danicobryan$cmsi386_programming_languages$Warmup$isOdd = function (number) {
+	return _elm_lang$core$Native_Utils.eq(
+		A2(_elm_lang$core$Basics_ops['%'], number, 2),
+		0) ? false : true;
+};
+var _danicobryan$cmsi386_programming_languages$Warmup$sumOfCubesOfOdds = function (numbers) {
+	return A3(
+		_elm_lang$core$List$foldr,
+		F2(
+			function (x, y) {
+				return x + y;
+			}),
+		0,
+		A2(
+			_elm_lang$core$List$map,
+			function (b) {
+				return (b * b) * b;
+			},
+			A2(_elm_lang$core$List$filter, _danicobryan$cmsi386_programming_languages$Warmup$isOdd, numbers)));
+};
+var _danicobryan$cmsi386_programming_languages$Warmup$powers = F2(
+	function (base, limit) {
+		return (_elm_lang$core$Native_Utils.cmp(base, 0) < 0) ? _elm_lang$core$Result$Err('negative base') : _elm_lang$core$Result$Ok(
+			A2(
+				_elm_lang$core$List$map,
+				function (power) {
+					return Math.pow(base, power);
+				},
+				A2(
+					_elm_lang$core$List$range,
+					0,
+					_elm_lang$core$Basics$floor(
+						A2(
+							_elm_lang$core$Basics$logBase,
+							_elm_lang$core$Basics$toFloat(base),
+							_elm_lang$core$Basics$toFloat(limit))))));
+	});
+var _danicobryan$cmsi386_programming_languages$Warmup$stripQuotes = function (str) {
+	return A4(
+		_elm_lang$core$Regex$replace,
+		_elm_lang$core$Regex$All,
+		_elm_lang$core$Regex$regex('[\'\"]'),
+		function (_p2) {
+			return '';
+		},
+		str);
+};
+var _danicobryan$cmsi386_programming_languages$Warmup$change = function (amount) {
+	return (_elm_lang$core$Native_Utils.cmp(amount, 0) < 0) ? _elm_lang$core$Result$Err('amount cannot be negative') : _elm_lang$core$Result$Ok(
+		function () {
+			var quarters = amount;
+			var dimes = A2(_elm_lang$core$Basics_ops['%'], quarters, 25);
+			var nickels = A2(_elm_lang$core$Basics_ops['%'], dimes, 10);
+			var pennies = A2(_elm_lang$core$Basics_ops['%'], nickels, 5);
+			return A4(
+				F4(
+					function (v0, v1, v2, v3) {
+						return {ctor: '_Tuple4', _0: v0, _1: v1, _2: v2, _3: v3};
+					}),
+				(quarters / 25) | 0,
+				(dimes / 10) | 0,
+				(nickels / 5) | 0,
+				pennies);
+		}());
+};
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'ChangeDate1') {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{date1: _p0._0});
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{date2: _p0._0});
+		}
+	});
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model = {date1: '2000-01-01', date2: '2000-02-01'};
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMessage = F2(
 	function (date1String, date2String) {
 		var date2ToCheck = _elm_lang$core$Date$fromString(date2String);
 		var date1ToCheck = _elm_lang$core$Date$fromString(date1String);
-		var _p3 = {ctor: '_Tuple2', _0: date1ToCheck, _1: date2ToCheck};
-		if (_p3._0.ctor === 'Ok') {
-			if (_p3._1.ctor === 'Ok') {
+		var _p1 = {ctor: '_Tuple2', _0: date1ToCheck, _1: date2ToCheck};
+		if (_p1._0.ctor === 'Ok') {
+			if (_p1._1.ctor === 'Ok') {
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$Basics$toString(
-						A2(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetween, date1String, date2String)),
+						A2(_danicobryan$cmsi386_programming_languages$Warmup$daysBetween, date1String, date2String)),
 					' days.');
 			} else {
-				return _p3._1._0;
+				return _p1._1._0;
 			}
 		} else {
-			return _p3._0._0;
+			return _p1._0._0;
 		}
 	});
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$Model = F2(
+	function (a, b) {
+		return {date1: a, date2: b};
+	});
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate2 = function (a) {
+	return {ctor: 'ChangeDate2', _0: a};
+};
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1 = function (a) {
+	return {ctor: 'ChangeDate1', _0: a};
+};
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$body,
@@ -10643,8 +10718,16 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 								_elm_lang$html$Html$input,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$value(model.date1),
-									_1: {ctor: '[]'}
+									_0: _elm_lang$html$Html_Attributes$type_('date'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onInput(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$value(model.date1),
+											_1: {ctor: '[]'}
+										}
+									}
 								},
 								{ctor: '[]'}),
 							_1: {ctor: '[]'}
@@ -10664,8 +10747,16 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 									_elm_lang$html$Html$input,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$value(model.date2),
-										_1: {ctor: '[]'}
+										_0: _elm_lang$html$Html_Attributes$type_('date'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Events$onInput(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate2),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$value(model.date2),
+												_1: {ctor: '[]'}
+											}
+										}
 									},
 									{ctor: '[]'}),
 								_1: {ctor: '[]'}
@@ -10674,26 +10765,15 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 					_1: {
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$button,
+							_elm_lang$html$Html$p,
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('calculate'),
+								_0: _elm_lang$html$Html$text(
+									A2(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMessage, model.date1, model.date2)),
 								_1: {ctor: '[]'}
 							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$p,
-								{ctor: '[]'},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text(
-										A2(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMessage, model.date1, model.date2)),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}
+						_1: {ctor: '[]'}
 					}
 				}
 			}
@@ -10701,16 +10781,6 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 };
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$main = _elm_lang$html$Html$beginnerProgram(
 	{model: _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model, view: _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view, update: _danicobryan$cmsi386_programming_languages$DateCalculatorApp$update})();
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$Model = F2(
-	function (a, b) {
-		return {date1: a, date2: b};
-	});
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate2 = function (a) {
-	return {ctor: 'ChangeDate2', _0: a};
-};
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1 = function (a) {
-	return {ctor: 'ChangeDate1', _0: a};
-};
 var Elm = {};
 Elm['DateCalculatorApp'] = Elm['DateCalculatorApp'] || {};
 if (typeof _danicobryan$cmsi386_programming_languages$DateCalculatorApp$main !== 'undefined') {
