@@ -18,14 +18,14 @@ daysBetweenMessage date1String date2String =
     in
       case (date1ToCheck, date2ToCheck) of
           (Ok d1, Ok d2) -> "is " ++ toString (withDefault (0) (daysBetween date1String date2String)) ++ " days."
-          (Err s, _) -> s
-          (_, Err s) -> s
+          (Err s, _) -> " days."
+          (_, Err s) -> " days."
 
 main =
     Html.beginnerProgram { model = model, view = view, update = update }
 
 model : Model
-model = { date1 = "2000-01-01", date2 = "2000-02-01"}
+model = { date1 = "", date2 = ""}
 
 update : Msg -> Model -> Model
 update msg model =
@@ -37,7 +37,7 @@ view : Model -> Html Msg
 view model =
     body [style [("textAlign", "center"), ("font", "16px Arial"), ("background-color", "linen"), ("margin", "0")]]
         [ h1 [style [("background-color", "cyan")]] [text "Date Calculator"]
-        , p [] [text "From: ", input [type_ "date", onInput ChangeDate1, value model.date1] []]
+        , p [] [text "From: ", input [style [("border", "2px solid grey"), ("margin-left", "8px")], type_ "date", onInput ChangeDate1, value model.date1] []]
         , p [] [text "To: ",  input [type_ "date", onInput ChangeDate2, value model.date2] []]
         , p [] [text <| daysBetweenMessage model.date1 model.date2]
         ]

@@ -10630,7 +10630,7 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$update = F2(
 				{date2: _p0._0});
 		}
 	});
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model = {date1: '2000-01-01', date2: '2000-02-01'};
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model = {date1: '', date2: ''};
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMessage = F2(
 	function (date1String, date2String) {
 		var date2ToCheck = _elm_lang$core$Date$fromString(date2String);
@@ -10650,10 +10650,10 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMess
 								A2(_danicobryan$cmsi386_programming_languages$Warmup$daysBetween, date1String, date2String))),
 						' days.'));
 			} else {
-				return _p1._1._0;
+				return ' days';
 			}
 		} else {
-			return _p1._0._0;
+			return ' days';
 		}
 	});
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$Model = F2(
@@ -10724,14 +10724,27 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 								_elm_lang$html$Html$input,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$type_('date'),
+									_0: _elm_lang$html$Html_Attributes$style(
+										{
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'border', _1: '2px solid grey'},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '8px'},
+												_1: {ctor: '[]'}
+											}
+										}),
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onInput(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1),
+										_0: _elm_lang$html$Html_Attributes$type_('date'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$value(model.date1),
-											_1: {ctor: '[]'}
+											_0: _elm_lang$html$Html_Events$onInput(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$value(model.date1),
+												_1: {ctor: '[]'}
+											}
 										}
 									}
 								},
