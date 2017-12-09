@@ -10540,7 +10540,7 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$update = F2(
 				{date2: _p0._0});
 		}
 	});
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model = {date1: '00-00-0000', date2: '00-00-0000'};
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model = {date1: '2000-01-01', date2: '2000-02-01'};
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetween = F2(
 	function (firstString, secondString) {
 		var _p1 = _elm_lang$core$Date$fromString(firstString);
@@ -10568,18 +10568,16 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetween = F
 	});
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMessage = F2(
 	function (date1String, date2String) {
-		var _p3 = {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$String$toFloat(date1String),
-			_1: _elm_lang$core$String$toFloat(date2String)
-		};
+		var date2ToCheck = _elm_lang$core$Date$fromString(date2String);
+		var date1ToCheck = _elm_lang$core$Date$fromString(date1String);
+		var _p3 = {ctor: '_Tuple2', _0: date1ToCheck, _1: date2ToCheck};
 		if (_p3._0.ctor === 'Ok') {
 			if (_p3._1.ctor === 'Ok') {
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$Basics$toString(
 						A2(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetween, date1String, date2String)),
-					'days.');
+					' days.');
 			} else {
 				return _p3._1._0;
 			}
@@ -10587,16 +10585,6 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMess
 			return _p3._0._0;
 		}
 	});
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$Model = F2(
-	function (a, b) {
-		return {date1: a, date2: b};
-	});
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate2 = function (a) {
-	return {ctor: 'ChangeDate2', _0: a};
-};
-var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1 = function (a) {
-	return {ctor: 'ChangeDate1', _0: a};
-};
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$body,
@@ -10606,7 +10594,19 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 				{
 					ctor: '::',
 					_0: {ctor: '_Tuple2', _0: 'textAlign', _1: 'center'},
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'font', _1: '16px Arial'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'linen'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin', _1: '0'},
+								_1: {ctor: '[]'}
+							}
+						}
+					}
 				}),
 			_1: {ctor: '[]'}
 		},
@@ -10614,7 +10614,16 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$h1,
-				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'cyan'},
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
 				{
 					ctor: '::',
 					_0: _elm_lang$html$Html$text('Date Calculator'),
@@ -10634,12 +10643,8 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 								_elm_lang$html$Html$input,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onInput(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$value(model.date1),
-										_1: {ctor: '[]'}
-									}
+									_0: _elm_lang$html$Html_Attributes$value(model.date1),
+									_1: {ctor: '[]'}
 								},
 								{ctor: '[]'}),
 							_1: {ctor: '[]'}
@@ -10659,12 +10664,8 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 									_elm_lang$html$Html$input,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onInput(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate2),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$value(model.date2),
-											_1: {ctor: '[]'}
-										}
+										_0: _elm_lang$html$Html_Attributes$value(model.date2),
+										_1: {ctor: '[]'}
 									},
 									{ctor: '[]'}),
 								_1: {ctor: '[]'}
@@ -10673,15 +10674,26 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 					_1: {
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$p,
+							_elm_lang$html$Html$button,
 							{ctor: '[]'},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									A2(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMessage, model.date1, model.date2)),
+								_0: _elm_lang$html$Html$text('calculate'),
 								_1: {ctor: '[]'}
 							}),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										A2(_danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMessage, model.date1, model.date2)),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
 					}
 				}
 			}
@@ -10689,6 +10701,16 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view = function
 };
 var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$main = _elm_lang$html$Html$beginnerProgram(
 	{model: _danicobryan$cmsi386_programming_languages$DateCalculatorApp$model, view: _danicobryan$cmsi386_programming_languages$DateCalculatorApp$view, update: _danicobryan$cmsi386_programming_languages$DateCalculatorApp$update})();
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$Model = F2(
+	function (a, b) {
+		return {date1: a, date2: b};
+	});
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate2 = function (a) {
+	return {ctor: 'ChangeDate2', _0: a};
+};
+var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$ChangeDate1 = function (a) {
+	return {ctor: 'ChangeDate1', _0: a};
+};
 var Elm = {};
 Elm['DateCalculatorApp'] = Elm['DateCalculatorApp'] || {};
 if (typeof _danicobryan$cmsi386_programming_languages$DateCalculatorApp$main !== 'undefined') {

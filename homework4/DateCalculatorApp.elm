@@ -8,6 +8,7 @@ import Date.Extra as Date exposing (..)
 type alias Model = { date1: String, date2: String }
 type Msg = ChangeDate1 String | ChangeDate2 String
 
+daysBetween: String -> String -> Result String (Int)
 daysBetween firstString secondString =
   case Date.fromString firstString of
     Err msg -> Err "First input string is not a date."
@@ -22,17 +23,22 @@ daysBetween firstString secondString =
             in
               Date.diff Day (firstDate) (secondDate)
 
+
 daysBetweenMessage date1String date2String =
-    case (date1String, date2String) of
-        (Ok d1, Ok d2) -> toString (daysBetween date1String date2String) ++ "days."
-        (Err s, _) -> s
-        (_, Err s) -> s
+    let
+      date1ToCheck = Date.fromString date1String
+      date2ToCheck = Date.fromString date2String
+    in
+      case (date1ToCheck, date2ToCheck) of
+          (Ok d1, Ok d2) -> toString (daysBetween date1String date2String) ++ " days."
+          (Err s, _) -> s
+          (_, Err s) -> s
 
 main =
     Html.beginnerProgram { model = model, view = view, update = update }
 
 model : Model
-model = { date1 = "00-00-0000", date2 = "00-00-0000"}
+model = { date1 = "2000-01-01", date2 = "2000-02-01"}
 
 update : Msg -> Model -> Model
 update msg model =
@@ -42,8 +48,8 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    body [style [("textAlign", "center")]]
-        [ h1 [] [text "Date Calculator"]
+    body [style [("textAlign", "center"), ("font", "16px Arial"), ("background-color", "linen"), ("margin", "0")]]
+        [ h1 [style [("background-color", "cyan")]] [text "Date Calculator"]
         , p [] [text "From: ", input [value model.date1] []]
         , p [] [text "To: ", input [value model.date2] []]
         , button [] [text "calculate"]
