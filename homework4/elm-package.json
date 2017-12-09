@@ -4,7 +4,7 @@
     "repository": "https://github.com/danicobryan/cmsi386-programming-languages.git",
     "license": "BSD3",
     "source-directories": [
-        ".",
+        "."
     ],
     "exposed-modules": [],
     "dependencies": {

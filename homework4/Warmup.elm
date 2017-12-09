@@ -2,7 +2,6 @@ module Warmup exposing (..)
 import Html exposing (Html, text)
 import List exposing (map, foldr, filter)
 import Regex
-import Date
 import Basics
 import Date exposing (..)
 import Date.Extra as Date exposing (..)
