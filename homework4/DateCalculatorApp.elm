@@ -1,5 +1,5 @@
 module DateCalculatorApp exposing (..)
-import Html exposing (Html, body, input, text, h1, p)
+import Html exposing (Html, body, input, text, h1, p, button)
 import Html.Attributes exposing (style, value)
 import Html.Events exposing (onClick, onInput)
 import Date exposing (..)
@@ -23,8 +23,8 @@ daysBetween firstString secondString =
               Date.diff Day (firstDate) (secondDate)
 
 daysBetweenMessage date1String date2String =
-    case (toString <| date1String, toString <| date2String) of
-        (Ok w, Ok h) -> toString (daysBetween date1String date2String) ++ "days."
+    case (date1String, date2String) of
+        (Ok d1, Ok d2) -> toString (daysBetween date1String date2String) ++ "days."
         (Err s, _) -> s
         (_, Err s) -> s
 
@@ -44,7 +44,8 @@ view : Model -> Html Msg
 view model =
     body [style [("textAlign", "center")]]
         [ h1 [] [text "Date Calculator"]
-        , p [] [text "From: ", input [onInput ChangeDate1, value model.date1] []]
-        , p [] [text "To: ", input [onInput ChangeDate2, value model.date2] []]
+        , p [] [text "From: ", input [value model.date1] []]
+        , p [] [text "To: ", input [value model.date2] []]
+        , button [] [text "calculate"]
         , p [] [text <| daysBetweenMessage model.date1 model.date2]
         ]
