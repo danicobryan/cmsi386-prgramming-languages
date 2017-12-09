@@ -4,6 +4,7 @@ import Html.Attributes exposing (style, value, type_)
 import Html.Events exposing (onClick, onInput)
 import Date exposing (..)
 import Date.Extra as Date exposing (..)
+import Result exposing (withDefault)
 import Warmup exposing (daysBetween)
 
 
@@ -16,7 +17,7 @@ daysBetweenMessage date1String date2String =
       date2ToCheck = Date.fromString date2String
     in
       case (date1ToCheck, date2ToCheck) of
-          (Ok d1, Ok d2) -> toString (daysBetween date1String date2String) ++ " days."
+          (Ok d1, Ok d2) -> "is " ++ toString (withDefault (0) (daysBetween date1String date2String)) ++ " days."
           (Err s, _) -> s
           (_, Err s) -> s
 

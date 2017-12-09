@@ -10640,9 +10640,15 @@ var _danicobryan$cmsi386_programming_languages$DateCalculatorApp$daysBetweenMess
 			if (_p1._1.ctor === 'Ok') {
 				return A2(
 					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$Basics$toString(
-						A2(_danicobryan$cmsi386_programming_languages$Warmup$daysBetween, date1String, date2String)),
-					' days.');
+					'is ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(
+							A2(
+								_elm_lang$core$Result$withDefault,
+								0,
+								A2(_danicobryan$cmsi386_programming_languages$Warmup$daysBetween, date1String, date2String))),
+						' days.'));
 			} else {
 				return _p1._1._0;
 			}
